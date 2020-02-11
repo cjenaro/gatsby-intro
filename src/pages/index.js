@@ -1,8 +1,20 @@
 import React from 'react';
-import Layout from '../components/layout'
+import Layout from '../components/layout';
 
-export default () => (
-  <Layout>
-    <h1>Hello</h1>
-  </Layout>
-);
+import usePosts from '../hooks/use-posts';
+import PostPreview from '../components/post-preview';
+
+export default () => {
+  const posts = usePosts();
+
+  return (
+    <Layout>
+      <h1>Hello</h1>
+
+      <h2>Read my blog</h2>
+      {posts.map(post => {
+        return <PostPreview key={post.slug} post={post} />;
+      })}
+    </Layout>
+  );
+};
