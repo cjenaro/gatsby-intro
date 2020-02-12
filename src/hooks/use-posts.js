@@ -9,6 +9,17 @@ const usePosts = () => {
             title
             slug
             author
+            image {
+              sharp: childImageSharp {
+                fluid(
+                  maxWidth: 100
+                  maxHeight: 100
+                  duotone: { shadow: "#663399", highlight: "#ddbbff" }
+                ) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
           excerpt
         }
@@ -21,7 +32,8 @@ const usePosts = () => {
     slug: node.frontmatter.slug,
     author: node.frontmatter.author,
     excerpt: node.excerpt,
+    image: node.frontmatter.image
   }));
 };
 
-export default usePosts
+export default usePosts;
